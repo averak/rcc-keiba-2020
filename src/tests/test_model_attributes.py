@@ -9,8 +9,8 @@ class TestModelAttributes(unittest.TestCase):
 
     def test_id_create(self):
         id_ = attrs.ID(0)
-        self.assertEqual(0, id_.get_attr())
+        self.assertEqual(0, id_.attr)
 
     def test_name_create(self):
         name = attrs.Name('競走馬名')
-        self.assertEqual('競走馬名', name.get_attr())
+        self.assertEqual('競走馬名', name.attr)

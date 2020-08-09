@@ -2,6 +2,6 @@
 from . import model
 
 
-class Horse(model.Model):
+class Jockey(model.Model):
     def _post_init(self, args):
         pass
