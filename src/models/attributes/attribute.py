@@ -9,5 +9,6 @@ class Attribute:
     def _restrict(self, attr):
         raise Exception('サブクラスの責務')
 
-    def get_attr(self):
+    @property
+    def attr(self):
         return self.__attr
