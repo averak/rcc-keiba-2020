@@ -11,6 +11,9 @@ class Model:
     def _post_init(self, args):
         raise Exception('サブクラスの責務')
 
+    def equals(self, model):
+        return self.id == model.id
+
     @property
     def id(self):
         return self.__id.attr

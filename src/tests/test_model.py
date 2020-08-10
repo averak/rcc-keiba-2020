@@ -27,3 +27,15 @@ class TestModel(unittest.TestCase):
         })
         self.assertEqual(id_.attr, jockey.id)
         self.assertEqual(name.attr, jockey.name)
+
+    def test_equals(self):
+        id_ = attrs.ID(0)
+        horse1 = models.Horse({
+            'id': id_,
+            'name': attrs.Name('競走馬1'),
+        })
+        horse2 = models.Horse({
+            'id': id_,
+            'name': attrs.Name('競走馬2'),
+        })
+        self.assertTrue(horse1.equals(horse2))
