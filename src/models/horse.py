@@ -4,4 +4,4 @@ from . import model
 
 class Horse(model.Model):
     def _post_init(self, args):
-        pass
+        self.__birthday = args['birthday']
