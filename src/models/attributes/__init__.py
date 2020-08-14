@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-from .birthday import Birthday
 from .id import ID
 from .name import Name
+from .birthday import Birthday
+from .weather import Weather
 
 __all__ = [
-    'Birthday',
     'ID',
     'Name',
+    'Birthday',
+    'Weather',
 ]
