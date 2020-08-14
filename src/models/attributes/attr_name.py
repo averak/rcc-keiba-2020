@@ -7,6 +7,6 @@ class Name(attribute.Attribute):
         if attr is None:
             raise Exception('名前がNoneです')
         if type(attr) is not str:
-            raise Exception('名前は長さ1以上の文字列を指定してください')
+            raise Exception('名前は長さ1以上の文字列で指定してください')
         if attr == '':
-            raise Exception('名前は長さ1以上の文字列を指定してください')
+            raise Exception('名前は長さ1以上の文字列で指定してください')

@@ -7,6 +7,6 @@ class ID(attribute.Attribute):
         if attr is None:
             raise Exception('IDがNoneです')
         if type(attr) is not int:
-            raise Exception('IDは0以上の整数を指定してください')
+            raise Exception('IDは0以上の整数で指定してください')
         if attr < 0:
-            raise Exception('IDは0以上の整数を指定してください')
+            raise Exception('IDは0以上の整数で指定してください')
