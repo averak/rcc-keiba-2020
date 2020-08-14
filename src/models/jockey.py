@@ -3,5 +3,5 @@ from . import model
 
 
 class Jockey(model.Model):
-    def _post_init(self, args):
+    def _hook_create(self, config):
         pass

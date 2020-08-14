@@ -13,11 +13,11 @@ class TestModelRepository(unittest.TestCase):
         id_ = attrs.ID(0)
         name = attrs.Name('競走馬名')
         birthday = attrs.Birthday('2000年1月1日')
-        horse = models.Horse({
-            'id': id_,
-            'name': name,
-            'birthday': birthday,
-        })
+        horse = models.Horse(
+            id_=id_,
+            name=name,
+            birthday=birthday,
+        )
         horse_repo = repos.HorseRepository()
         horse_repo.store(horse)
         self.assertEqual([horse], horse_repo.find(0))
@@ -25,10 +25,10 @@ class TestModelRepository(unittest.TestCase):
     def test_jockey_repo(self):
         id_ = attrs.ID(0)
         name = attrs.Name('騎手名')
-        jockey = models.Jockey({
-            'id': id_,
-            'name': name,
-        })
+        jockey = models.Jockey(
+            id_=id_,
+            name=name,
+        )
         jockey_repo = repos.JockeyRepository()
         jockey_repo.store(jockey)
         self.assertEqual([jockey], jockey_repo.find(0))

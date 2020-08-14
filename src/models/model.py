@@ -2,13 +2,13 @@
 
 
 class Model:
-    def __init__(self, args):
-        self.__id = args['id']
-        self.__name = args['name']
+    def __init__(self, **config):
+        self.__id = config['id_']
+        self.__name = config['name']
 
-        self._post_init(args)
+        self._hook_create(config)
 
-    def _post_init(self, args):
+    def _hook_create(self, config):
         raise Exception('サブクラスの責務')
 
     def equals(self, model):
