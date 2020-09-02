@@ -3,10 +3,15 @@ from . import attribute
 
 
 class Speed(attribute.Attribute):
-    def _restrict(self, attr):
+    def _validation_exception(self):
+        raise Exception('速度は0以上の小数を指定してください')
+
+    def _validation(self, attr):
         if attr is None:
-            raise Exception('速度がNoneです')
+            return False
         if type(attr) not in [int, float]:
-            raise Exception('速度は0以上の小数で指定してください')
+            return False
         if attr < 0:
-            raise Exception('速度は0以上の小数で指定してください')
+            return False
+
+        return True

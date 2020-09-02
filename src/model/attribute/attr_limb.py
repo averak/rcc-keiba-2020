@@ -3,10 +3,15 @@ from . import attribute
 
 
 class Limb(attribute.Attribute):
-    def _restrict(self, attr):
+    def _validation_exception(self):
+        raise Exception('脚質特性は|0~1 0:逃げ 1:追込|の小数を指定してください')
+
+    def _validation(self, attr):
         if attr is None:
-            raise Exception('脚質特性がNoneです')
+            return False
         if type(attr) not in [int, float]:
-            raise Exception('脚質特性は|0~1 0:逃げ 1:追込|の小数で指定してください')
+            return False
         if attr < 0 or attr > 1:
-            raise Exception('脚質特性は|0~1 0:逃げ 1:追込|の小数で指定してください')
+            return False
+
+        return True

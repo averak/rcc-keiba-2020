@@ -3,10 +3,13 @@ from . import attribute
 
 
 class Weather(attribute.Attribute):
-    def _restrict(self, attr):
+    def _validation_exception(self):
+        raise Exception('天気は晴/曇/雨のいずれかを指定してください')
+
+    def _validation(self, attr):
         if attr is None:
-            raise Exception('天気がNoneです')
-        if type(attr) not in [int, float]:
-            raise Exception('天気は|0: 晴 0.5: 曇 1: 雨|で指定してください')
-        if attr not in [0, 0.5, 1]:
-            raise Exception('天気は|0: 晴 0.5: 曇 1: 雨|で指定してください')
+            return False
+        if attr not in ['晴', '曇', '雨']:
+            return False
+
+        return True

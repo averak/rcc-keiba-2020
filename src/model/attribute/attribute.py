@@ -3,10 +3,14 @@
 
 class Attribute:
     def __init__(self, attr):
-        self._restrict(attr)
+        if not self._validation(attr):
+            self._validation_exception()
         self._create(attr)
 
-    def _restrict(self, attr):
+    def _validation(self, attr):
+        raise Exception('サブクラスの責務')
+
+    def _validation_exception(self):
         raise Exception('サブクラスの責務')
 
     def _create(self, attr):

@@ -3,10 +3,15 @@ from . import attribute
 
 
 class ID(attribute.Attribute):
-    def _restrict(self, attr):
+    def _validation_exception(self):
+        raise Exception('IDは0以上の整数を指定してください')
+
+    def _validation(self, attr):
         if attr is None:
-            raise Exception('IDがNoneです')
+            return False
         if type(attr) is not int:
-            raise Exception('IDは0以上の整数で指定してください')
+            return False
         if attr < 0:
-            raise Exception('IDは0以上の整数で指定してください')
+            return False
+
+        return True

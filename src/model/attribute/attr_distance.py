@@ -3,10 +3,15 @@ from . import attribute
 
 
 class Distance(attribute.Attribute):
-    def _restrict(self, attr):
+    def _validation_exception(self):
+        raise Exception('走距離は0以上の整数を指定してください')
+
+    def _validation(self, attr):
         if attr is None:
-            raise Exception('走距離がNoneです')
+            return False
         if type(attr) is not int:
-            raise Exception('走距離は0以上の整数で指定してください')
+            return False
         if attr < 0:
-            raise Exception('走距離は0以上の整数で指定してください')
+            return False
+
+        return True

@@ -3,10 +3,15 @@ from . import attribute
 
 
 class Name(attribute.Attribute):
-    def _restrict(self, attr):
+    def _validation_exception(self):
+        raise Exception('名前は1文字以上の文字列を指定してください')
+
+    def _validation(self, attr):
         if attr is None:
-            raise Exception('名前がNoneです')
+            return False
         if type(attr) is not str:
-            raise Exception('名前は長さ1以上の文字列で指定してください')
+            return False
         if attr == '':
-            raise Exception('名前は長さ1以上の文字列で指定してください')
+            return False
+
+        return True

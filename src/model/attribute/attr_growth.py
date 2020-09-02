@@ -3,10 +3,15 @@ from . import attribute
 
 
 class Growth(attribute.Attribute):
-    def _restrict(self, attr):
+    def _validation_exception(self):
+        raise Exception('成長特性は0以上の整数を指定してください')
+
+    def _validation(self, attr):
         if attr is None:
-            raise Exception('成長特性がNoneです')
+            return False
         if type(attr) not in [int, float]:
-            raise Exception('成長特性は|0~1 0:早熟 1:晩成|の小数で指定してください')
+            return False
         if attr < 0 or attr > 1:
-            raise Exception('成長特性は|0~1 0:早熟 1:晩成|の小数で指定してください')
+            return False
+
+        return True

@@ -22,12 +22,10 @@ class TestModel(unittest.TestCase):
         return ModelUtil.create_jockey(self.attrs())
 
     def test_create_horse(self):
-        horse = self.create_horse()
-        self.assertEqual(self.attrs().id.attr, horse.id)
+        self.create_horse()
 
     def test_create_jockey(self):
-        jockey = self.create_jockey()
-        self.assertEqual(self.attrs().id.attr, jockey.id)
+        self.create_jockey()
 
     def test_equals(self):
         horse1 = self.create_horse()
