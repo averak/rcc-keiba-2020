@@ -35,3 +35,21 @@ class ModelUtil:
             win_rate=attrs.create_win_rate(0.33),
             rank_average=attrs.create_rank_average(3.5),
         )
+
+    @classmethod
+    def create_ped(cls, attrs):
+        return model.Ped(
+            id_=attrs.create_id(0),
+            name=attrs.create_name('血統名'),
+            win_rate=attrs.create_win_rate(0.33),
+            rank_average=attrs.create_rank_average(3.5),
+        )
+
+    @classmethod
+    def create_trainer(cls, attrs):
+        return model.Trainer(
+            id_=attrs.create_id(0),
+            name=attrs.create_name('調教師名'),
+            win_rate=attrs.create_win_rate(0.33),
+            rank_average=attrs.create_rank_average(3.5),
+        )

@@ -21,11 +21,23 @@ class TestModel(unittest.TestCase):
     def create_jockey(self):
         return ModelUtil.create_jockey(self.attrs())
 
+    def create_ped(self):
+        return ModelUtil.create_ped(self.attrs())
+
+    def create_trainer(self):
+        return ModelUtil.create_trainer(self.attrs())
+
     def test_create_horse(self):
         self.create_horse()
 
     def test_create_jockey(self):
         self.create_jockey()
+
+    def test_create_ped(self):
+        self.create_ped()
+
+    def test_create_trainer(self):
+        self.create_trainer()
 
     def test_equals(self):
         horse1 = self.create_horse()
