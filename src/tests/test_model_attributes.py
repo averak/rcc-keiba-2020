@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import unittest
-import models.attributes as attrs
+import model.attribute as attrs
 
 
-class TestModelAttributes(unittest.TestCase):
+class TestModelAttribute(unittest.TestCase):
     def setUp(self):
         pass
 
@@ -62,3 +62,7 @@ class TestModelAttributes(unittest.TestCase):
     def test_win_rate_create(self):
         wins = attrs.WinRate(0.33)
         self.assertEqual(0.33, wins.attr)
+
+    def test_sex_create(self):
+        sex = attrs.Sex('牡')
+        self.assertEqual('牡', sex.attr)

@@ -4,7 +4,6 @@
 class Model:
     def __init__(self, **config):
         self.__id = config['id_']
-        self.__name = config['name']
 
         self._hook_create(config)
 
@@ -12,12 +11,8 @@ class Model:
         raise Exception('サブクラスの責務')
 
     def equals(self, model):
-        return self.id == model.id
+        return self.id == model.id and type(self) == type(model)
 
     @property
     def id(self):
         return self.__id.attr
-
-    @property
-    def name(self):
-        return self.__name.attr

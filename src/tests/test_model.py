@@ -1,46 +1,45 @@
 # -*- coding: utf-8 -*-
 import unittest
-import models
-import models.attributes as attrs
+import model
+import model.attribute as attrs
+import repository as repo
+from util.attr_util import AttrUtil
+from util.model_util import ModelUtil
 
 
 class TestModel(unittest.TestCase):
     def setUp(self):
-        pass
+        self.horse_repo = repo.Repository(model.Horse)
+        self.jockey_repo = repo.Repository(model.Jockey)
+
+    def attrs(self):
+        return AttrUtil
+
+    def create_horse(self):
+        return ModelUtil.create_horse(self.attrs())
+
+    def create_jockey(self):
+        return ModelUtil.create_jockey(self.attrs())
 
     def test_create_horse(self):
-        id_ = attrs.ID(0)
-        name = attrs.Name('競走馬名')
-        birthday = attrs.Birthday('2000年1月1日')
-        horse = models.Horse(
-            id_=id_,
-            name=name,
-            birthday=birthday,
-        )
-        self.assertEqual(id_.attr, horse.id)
-        self.assertEqual(name.attr, horse.name)
+        horse = self.create_horse()
+        self.assertEqual(self.attrs().id.attr, horse.id)
 
     def test_create_jockey(self):
-        id_ = attrs.ID(0)
-        name = attrs.Name('騎手名')
-        jockey = models.Jockey(
-            id_=id_,
-            name=name,
-        )
-        self.assertEqual(id_.attr, jockey.id)
-        self.assertEqual(name.attr, jockey.name)
+        jockey = self.create_jockey()
+        self.assertEqual(self.attrs().id.attr, jockey.id)
 
     def test_equals(self):
-        id_ = attrs.ID(0)
-        birthday = attrs.Birthday('2000年1月1日')
-        horse1 = models.Horse(
-            id_=id_,
-            name=attrs.Name('競走馬1'),
-            birthday=birthday,
-        )
-        horse2 = models.Horse(
-            id_=id_,
-            name=attrs.Name('競走馬2'),
-            birthday=birthday,
-        )
+        horse1 = self.create_horse()
+        horse2 = self.create_horse()
         self.assertTrue(horse1.equals(horse2))
+
+    def test_horse_repo(self):
+        horse = self.create_horse()
+        self.horse_repo.store(horse)
+        self.assertEqual([horse], self.horse_repo.find(0, 'id'))
+
+    def test_jockey_repo(self):
+        jockey = self.create_jockey()
+        self.jockey_repo.store(jockey)
+        self.assertEqual([jockey], self.jockey_repo.find(0, 'id'))
