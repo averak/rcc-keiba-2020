@@ -9,7 +9,7 @@ class Ground(attribute.Attribute):
     def _validation(self, attr):
         if attr is None:
             return False
-        if attr not in ['芝', 'ダート']:
+        if attr not in ('芝', 'ダート'):
             return False
 
         return True

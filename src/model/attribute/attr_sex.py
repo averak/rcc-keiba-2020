@@ -10,7 +10,7 @@ class Sex(attribute.Attribute):
     def _validation(self, attr):
         if attr is None:
             return False
-        if attr not in ['牡', '牝', 'セ']:
+        if attr not in ('牡', '牝', 'セ'):
             return False
 
         return True

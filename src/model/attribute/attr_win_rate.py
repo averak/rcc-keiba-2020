@@ -9,7 +9,7 @@ class WinRate(attribute.Attribute):
     def _validation(self, attr):
         if attr is None:
             return False
-        if type(attr) not in [int, float]:
+        if type(attr) not in (int, float):
             return False
         if attr < 0 or attr > 1:
             return False

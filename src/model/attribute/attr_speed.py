@@ -9,7 +9,7 @@ class Speed(attribute.Attribute):
     def _validation(self, attr):
         if attr is None:
             return False
-        if type(attr) not in [int, float]:
+        if type(attr) not in (int, float):
             return False
         if attr < 0:
             return False

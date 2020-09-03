@@ -9,7 +9,7 @@ class Weather(attribute.Attribute):
     def _validation(self, attr):
         if attr is None:
             return False
-        if attr not in ['晴', '曇', '雨']:
+        if attr not in ('晴', '曇', '雨'):
             return False
 
         return True
