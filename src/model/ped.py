@@ -18,3 +18,7 @@ class Ped(model.Model):
     @property
     def rank_average(self):
         return self.__rank_average.attr
+
+    @property
+    def url(self):
+        return 'https://db.netkeiba.com/horse/ped/%s' % self

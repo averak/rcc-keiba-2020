@@ -26,8 +26,11 @@ class TestModel(unittest.TestCase):
     def create_trainer(self):
         return ModelUtil.create_trainer(self.attrs())
 
+    def create_race(self):
+        return ModelUtil.create_race(self.attrs())
+
     def test_create_horse(self):
-        self.create_horse()
+        horse = self.create_horse()
 
     def test_create_jockey(self):
         self.create_jockey()
@@ -38,6 +41,9 @@ class TestModel(unittest.TestCase):
     def test_create_trainer(self):
         self.create_trainer()
 
+    def test_create_race(self):
+        self.create_race()
+
     def test_equals(self):
         horse1 = self.create_horse()
         horse2 = self.create_horse()
@@ -46,9 +52,9 @@ class TestModel(unittest.TestCase):
     def test_horse_repo(self):
         horse = self.create_horse()
         self.horse_repo.store(horse)
-        self.assertEqual([horse], self.horse_repo.find(0, 'id'))
+        self.assertEqual([horse], self.horse_repo.find(horse.id, 'id'))
 
     def test_jockey_repo(self):
         jockey = self.create_jockey()
         self.jockey_repo.store(jockey)
-        self.assertEqual([jockey], self.jockey_repo.find(0, 'id'))
+        self.assertEqual([jockey], self.jockey_repo.find(jockey.id, 'id'))

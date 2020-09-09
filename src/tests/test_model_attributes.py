@@ -10,10 +10,6 @@ class TestModelAttribute(unittest.TestCase):
     def attrs(self):
         return AttrUtil
 
-    def test_birthday(self):
-        attr = self.attrs().create_birthday('2000年1月1日')
-        self.assertEqual('2000年1月1日', attr.attr)
-
     def test_breeding_center(self):
         attr = self.attrs().create_breeding_center('産地名')
         self.assertEqual('産地名', attr.attr)
@@ -21,6 +17,10 @@ class TestModelAttribute(unittest.TestCase):
     def test_course_suitability(self):
         attr = self.attrs().create_course_suitability(0.8)
         self.assertEqual(0.8, attr.attr)
+
+    def test_date(self):
+        attr = self.attrs().create_date('2000年1月1日')
+        self.assertEqual('2000年1月1日', attr.attr)
 
     def test_distance(self):
         attr = self.attrs().create_distance(200)
@@ -30,16 +30,24 @@ class TestModelAttribute(unittest.TestCase):
         attr = self.attrs().create_distance_suitability(0.8)
         self.assertEqual(0.8, attr.attr)
 
-    def test_ground(self):
-        attr = self.attrs().create_ground('ダート')
+    def test_field(self):
+        attr = self.attrs().create_field('ダート')
         self.assertEqual('ダート', attr.attr)
 
     def test_growth(self):
         attr = self.attrs().create_growth(0.8)
         self.assertEqual(0.8, attr.attr)
 
+    def test_horse_id(self):
+        attr = self.attrs().create_horse_id(0)
+        self.assertEqual(0, attr.attr)
+
     def test_id(self):
         attr = self.attrs().create_id(0)
+        self.assertEqual(0, attr.attr)
+
+    def test_jockey_id(self):
+        attr = self.attrs().create_jockey_id(0)
         self.assertEqual(0, attr.attr)
 
     def test_limb(self):
@@ -60,6 +68,10 @@ class TestModelAttribute(unittest.TestCase):
 
     def test_ped_id(self):
         attr = self.attrs().create_ped_id(0)
+        self.assertEqual(0, attr.attr)
+
+    def test_race_id(self):
+        attr = self.attrs().create_race_id(0)
         self.assertEqual(0, attr.attr)
 
     def test_rank_average(self):
@@ -85,6 +97,10 @@ class TestModelAttribute(unittest.TestCase):
     def test_trainer_id(self):
         attr = self.attrs().create_trainer_id(0)
         self.assertEqual(0, attr.attr)
+
+    def test_turn(self):
+        attr = self.attrs().create_turn('右')
+        self.assertEqual('右', attr.attr)
 
     def test_weather(self):
         attr = self.attrs().create_weather('晴')

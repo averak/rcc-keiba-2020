@@ -2,9 +2,9 @@ import re
 from . import attribute
 
 
-class Birthday(attribute.Attribute):
+class Date(attribute.Attribute):
     def _validation_exception(self):
-        raise Exception('誕生日は"YYYY年MM月DD日"のフォーマットで指定してください')
+        raise Exception('日付は"YYYY年MM月DD日"のフォーマットで指定してください')
 
     def _validation(self, attr):
         if attr is None:

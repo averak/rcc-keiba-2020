@@ -3,16 +3,16 @@ import model.attribute as attrs
 
 class AttrUtil:
     @classmethod
-    def create_birthday(cls, val):
-        return attrs.Birthday(val)
-
-    @classmethod
     def create_breeding_center(cls, val):
         return attrs.BreedingCenter(val)
 
     @classmethod
     def create_course_suitability(cls, val):
         return attrs.CourseSuitability(val)
+
+    @classmethod
+    def create_date(cls, val):
+        return attrs.Date(val)
 
     @classmethod
     def create_distance(cls, val):
@@ -23,16 +23,24 @@ class AttrUtil:
         return attrs.DistanceSuitability(val)
 
     @classmethod
-    def create_ground(cls, val):
-        return attrs.Ground(val)
+    def create_field(cls, val):
+        return attrs.Field(val)
 
     @classmethod
     def create_growth(cls, val):
         return attrs.Growth(val)
 
     @classmethod
+    def create_horse_id(cls, val):
+        return attrs.HorseID(val)
+
+    @classmethod
     def create_id(cls, val):
         return attrs.ID(val)
+
+    @classmethod
+    def create_jockey_id(cls, val):
+        return attrs.JockeyID(val)
 
     @classmethod
     def create_limb(cls, val):
@@ -53,6 +61,10 @@ class AttrUtil:
     @classmethod
     def create_ped_id(cls, val):
         return attrs.PedID(val)
+
+    @classmethod
+    def create_race_id(cls, val):
+        return attrs.RaceID(val)
 
     @classmethod
     def create_rank_average(cls, val):
@@ -77,6 +89,10 @@ class AttrUtil:
     @classmethod
     def create_trainer_id(cls, val):
         return attrs.TrainerID(val)
+
+    @classmethod
+    def create_turn(cls, val):
+        return attrs.Turn(val)
 
     @classmethod
     def create_weather(cls, val):

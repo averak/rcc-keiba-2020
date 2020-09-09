@@ -2,6 +2,6 @@ from . import attribute
 from . import attr_id
 
 
-class PedID(attr_id.ID):
-    id_type = '血統'
+class HorseID(attr_id.ID):
+    id_type = '競走馬'
     max_digit = 10

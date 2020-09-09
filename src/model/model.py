@@ -13,3 +13,6 @@ class Model:
     @property
     def id(self):
         return self.__id.attr
+
+    def __str__(self):
+        return str(self.__id)
