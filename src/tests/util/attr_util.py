@@ -79,6 +79,10 @@ class AttrUtil:
         return attrs.TrainerID(val)
 
     @classmethod
+    def create_turn(cls, val):
+        return attrs.Turn(val)
+
+    @classmethod
     def create_weather(cls, val):
         return attrs.Weather(val)
 

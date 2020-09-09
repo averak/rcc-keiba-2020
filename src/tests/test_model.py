@@ -26,6 +26,9 @@ class TestModel(unittest.TestCase):
     def create_trainer(self):
         return ModelUtil.create_trainer(self.attrs())
 
+    def create_race(self):
+        return ModelUtil.create_race(self.attrs())
+
     def test_create_horse(self):
         self.create_horse()
 
@@ -37,6 +40,9 @@ class TestModel(unittest.TestCase):
 
     def test_create_trainer(self):
         self.create_trainer()
+
+    def test_create_race(self):
+        self.create_race()
 
     def test_equals(self):
         horse1 = self.create_horse()

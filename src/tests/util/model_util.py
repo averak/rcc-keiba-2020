@@ -52,3 +52,17 @@ class ModelUtil:
             win_rate=attrs.create_win_rate(0.33),
             rank_average=attrs.create_rank_average(3.5),
         )
+
+    @classmethod
+    def create_race(cls, attrs):
+        return model.Race(
+            id_=attrs.create_id(0),
+            name=attrs.create_name('レース名'),
+            date=attrs.create_date('2000年1月1日'),
+            weather=attrs.create_weather('晴'),
+            field=attrs.create_field('芝'),
+            turn=attrs.create_turn('右'),
+            distance=attrs.create_distance(1200),
+            prize_money=[attrs.create_money(100000) for i in range(5)],
+            horses=[cls.create_horse(attrs) for i in range(18)],
+        )

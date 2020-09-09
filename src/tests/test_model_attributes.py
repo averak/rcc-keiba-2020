@@ -86,6 +86,10 @@ class TestModelAttribute(unittest.TestCase):
         attr = self.attrs().create_trainer_id(0)
         self.assertEqual(0, attr.attr)
 
+    def test_turn(self):
+        attr = self.attrs().create_turn('右')
+        self.assertEqual('右', attr.attr)
+
     def test_weather(self):
         attr = self.attrs().create_weather('晴')
         self.assertEqual('晴', attr.attr)
