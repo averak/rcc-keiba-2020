@@ -49,3 +49,7 @@ class Race(model.Model):
     @property
     def n_horses(self):
         return len(self.__horses)
+
+    @property
+    def url(self):
+        return 'https://race.netkeiba.com/race/shutuba.html?race_id=%s' % self

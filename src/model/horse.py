@@ -93,3 +93,7 @@ class Horse(model.Model):
     @property
     def winter_suitability(self):
         return self.__winter_suitability.attr
+
+    @property
+    def url(self):
+        return 'https://db.netkeiba.com/horse/%s' % self

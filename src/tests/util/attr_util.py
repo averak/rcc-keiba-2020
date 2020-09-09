@@ -31,8 +31,16 @@ class AttrUtil:
         return attrs.Growth(val)
 
     @classmethod
+    def create_horse_id(cls, val):
+        return attrs.HorseID(val)
+
+    @classmethod
     def create_id(cls, val):
         return attrs.ID(val)
+
+    @classmethod
+    def create_jockey_id(cls, val):
+        return attrs.JockeyID(val)
 
     @classmethod
     def create_limb(cls, val):
@@ -53,6 +61,10 @@ class AttrUtil:
     @classmethod
     def create_ped_id(cls, val):
         return attrs.PedID(val)
+
+    @classmethod
+    def create_race_id(cls, val):
+        return attrs.RaceID(val)
 
     @classmethod
     def create_rank_average(cls, val):

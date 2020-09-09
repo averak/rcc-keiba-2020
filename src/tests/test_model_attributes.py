@@ -38,8 +38,16 @@ class TestModelAttribute(unittest.TestCase):
         attr = self.attrs().create_growth(0.8)
         self.assertEqual(0.8, attr.attr)
 
+    def test_horse_id(self):
+        attr = self.attrs().create_horse_id(0)
+        self.assertEqual(0, attr.attr)
+
     def test_id(self):
         attr = self.attrs().create_id(0)
+        self.assertEqual(0, attr.attr)
+
+    def test_jockey_id(self):
+        attr = self.attrs().create_jockey_id(0)
         self.assertEqual(0, attr.attr)
 
     def test_limb(self):
@@ -60,6 +68,10 @@ class TestModelAttribute(unittest.TestCase):
 
     def test_ped_id(self):
         attr = self.attrs().create_ped_id(0)
+        self.assertEqual(0, attr.attr)
+
+    def test_race_id(self):
+        attr = self.attrs().create_race_id(0)
         self.assertEqual(0, attr.attr)
 
     def test_rank_average(self):
