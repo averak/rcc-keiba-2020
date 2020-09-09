@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import unittest
 import model.attribute as attrs
 from util.attr_util import AttrUtil

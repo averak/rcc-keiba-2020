@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 class Attribute:
     def __init__(self, attr):
         if not self._validation(attr):

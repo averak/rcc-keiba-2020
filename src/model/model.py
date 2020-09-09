@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 class Model:
     def __init__(self, **config):
         self.__id = config['id_']

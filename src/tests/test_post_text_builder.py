@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import unittest
 from post.text_builder import TextBuilder
 

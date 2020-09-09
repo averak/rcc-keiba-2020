@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 class Repository(list):
     def __init__(self, type_):
         self.__type = type_

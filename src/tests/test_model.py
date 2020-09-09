@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import unittest
 import model
 import model.attribute as attrs

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from . import attribute
 from . import attr_name
 

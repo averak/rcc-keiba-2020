@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 class TextBuilder:
     def __init__(self):
         self.__buffer = ''
