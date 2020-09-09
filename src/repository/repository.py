@@ -13,7 +13,7 @@ class Repository(list):
             if not hasattr(data, attr):
                 continue
 
-            if key == eval('data.%s' % attr):
+            if key.__eq__(eval('data.%s' % attr)):
                 result.append(data)
 
         return result

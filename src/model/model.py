@@ -7,12 +7,14 @@ class Model:
     def _hook_create(self, config):
         raise Exception('サブクラスの責務')
 
-    def equals(self, model):
-        return self.id == model.id and type(self) == type(model)
-
     @property
     def id(self):
-        return self.__id.attr
+        return self.__id
 
-    def __str__(self):
-        return str(self.__id)
+    def __eq__(self, other):
+        if not isinstance(other, type(self)):
+            return False
+        if self.id.__eq__(other.id):
+            return True
+
+        return False

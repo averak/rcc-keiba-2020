@@ -16,3 +16,16 @@ class Attribute:
     @property
     def attr(self):
         return self.__attr
+
+    def __str__(self):
+        return str(self.attr)
+
+    def __eq__(self, other):
+        if other is None:
+            return False
+        if not isinstance(other, type(self)):
+            return False
+        if self.attr == other.attr:
+            return True
+
+        return False

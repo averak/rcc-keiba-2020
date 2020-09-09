@@ -11,7 +11,7 @@ class TextBuilder:
         self.new_line()
 
     def make_forecast(self, horse, score):
-        self.__buffer += ' 👑 ' + horse
+        self.__buffer += ' 👑 ' + str(horse)
         self.new_line()
         self.__buffer += ' 🔮 ' + self.__make_star(score)
         self.new_line()
@@ -20,7 +20,7 @@ class TextBuilder:
         self.__buffer += '▼ 出場馬'
         self.new_line()
         for horse in horses:
-            self.__buffer += '🐎 ' + horse
+            self.__buffer += '🐎 ' + str(horse)
             self.new_line()
 
     def new_line(self):

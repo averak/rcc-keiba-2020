@@ -37,7 +37,7 @@ class TestPostTextBuilder(unittest.TestCase):
             builder.get_result()
         )
 
-    def test_make_hores(self):
+    def test_make_horse(self):
         horses = ['馬1', '馬2', '馬3']
         builder = self.builder()
         builder.make_horses(horses)

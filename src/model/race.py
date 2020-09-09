@@ -11,36 +11,36 @@ class Race(model.Model):
         self.__field = config['field']
         self.__turn = config['turn']
         self.__distance = config['distance']
-        self.__prize_money = config['prize_money']
-        self.__horses = config['horses'][:self.max_horses]
+        self.__prize = config['prize']
+        self.__horses = config['horses']
 
     @property
     def name(self):
-        return self.__name.attr
+        return self.__name
 
     @property
     def date(self):
-        return self.__date.attr
+        return self.__date
 
     @property
     def weather(self):
-        return self.__weather.attr
+        return self.__weather
 
     @property
     def field(self):
-        return self.__field.attr
+        return self.__field
 
     @property
     def turn(self):
-        return self.__turn.attr
+        return self.__turn
 
     @property
     def distance(self):
-        return self.__distance.attr
+        return self.__distance
 
     @property
-    def prize_money(self):
-        return [money.attr for money in self.__prize_money]
+    def prize(self):
+        return self.__prize
 
     @property
     def horses(self):
@@ -48,8 +48,8 @@ class Race(model.Model):
 
     @property
     def n_horses(self):
-        return len(self.__horses)
+        return self.__horses.n_horses
 
     @property
     def url(self):
-        return 'https://race.netkeiba.com/race/shutuba.html?race_id=%s' % self
+        return 'https://race.netkeiba.com/race/shutuba.html?race_id=%s' % self.id

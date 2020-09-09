@@ -9,16 +9,16 @@ class Trainer(model.Model):
 
     @property
     def name(self):
-        return self.__name.attr
+        return self.__name
 
     @property
     def win_rate(self):
-        return self.__win_rate.attr
+        return self.__win_rate
 
     @property
     def rank_average(self):
-        return self.__rank_average.attr
+        return self.__rank_average
 
     @property
     def url(self):
-        return 'https://db.netkeiba.com/trainer/%s' % self
+        return 'https://db.netkeiba.com/trainer/%s' % self.id
