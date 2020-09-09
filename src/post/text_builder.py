@@ -7,20 +7,20 @@ class TextBuilder:
         self.new_line()
 
     def make_string(self, string):
-        self.__buffer += string
+        self.__buffer += str(string)
         self.new_line()
 
     def make_forecast(self, horse, score):
-        self.__buffer += ' 👑 ' + str(horse)
+        self.__buffer += ' 👑 %s' % horse
         self.new_line()
-        self.__buffer += ' 🔮 ' + self.__make_star(score)
+        self.__buffer += ' 🔮 %s' % self.__make_star(score)
         self.new_line()
 
     def make_horses(self, horses):
         self.__buffer += '▼ 出場馬'
         self.new_line()
         for horse in horses:
-            self.__buffer += '🐎 ' + str(horse)
+            self.__buffer += '🐎 %s' % horse
             self.new_line()
 
     def new_line(self):

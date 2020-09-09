@@ -1,5 +1,8 @@
 import unittest
 from post.text_builder import TextBuilder
+from post.guide import Guide
+from util.attr_util import AttrUtil
+from util.model_util import ModelUtil
 
 
 class TestPostTextBuilder(unittest.TestCase):
@@ -47,3 +50,12 @@ class TestPostTextBuilder(unittest.TestCase):
                 horses[0], horses[1], horses[2]),
             builder.get_result()
         )
+
+    @unittest.skip('投稿テキストのプレビュー')
+    def test_make_text(self):
+        race = ModelUtil.create_race(AttrUtil)
+        horse = ModelUtil.create_horse(AttrUtil)
+        guide = Guide()
+        text = guide.construct(race, horse, 1.2)
+        print()
+        print(text)
