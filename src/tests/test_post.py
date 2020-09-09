@@ -1,4 +1,5 @@
 import unittest
+from post.poster import Poster
 from post.text_builder import TextBuilder
 from post.guide import Guide
 from util.attr_util import AttrUtil
@@ -8,6 +9,12 @@ from util.model_util import ModelUtil
 class TestPostTextBuilder(unittest.TestCase):
     def builder(self):
         return TextBuilder()
+
+    def make_text(self):
+        race = ModelUtil.create_race(AttrUtil)
+        horse = ModelUtil.create_horse(AttrUtil)
+        guide = Guide()
+        return guide.construct(race, horse, 1.2)
 
     def test_make_title(self):
         title = 'テストタイトル'
@@ -53,9 +60,9 @@ class TestPostTextBuilder(unittest.TestCase):
 
     @unittest.skip('投稿テキストのプレビュー')
     def test_make_text(self):
-        race = ModelUtil.create_race(AttrUtil)
-        horse = ModelUtil.create_horse(AttrUtil)
-        guide = Guide()
-        text = guide.construct(race, horse, 1.2)
         print()
-        print(text)
+        print(self.make_text())
+
+    @unittest.skip('投稿されるため')
+    def test_post(self):
+        Poster.publish(self.make_text())
