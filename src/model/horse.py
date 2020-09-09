@@ -4,7 +4,7 @@ from . import model
 class Horse(model.Model):
     def _hook_create(self, config):
         self.__name = config['name']
-        self.__birthday = config['birthday']
+        self.__date = config['date']
         self.__sex = config['sex']
         self.__ped_id = config['ped_id']
         self.__trainer_id = config['trainer_id']

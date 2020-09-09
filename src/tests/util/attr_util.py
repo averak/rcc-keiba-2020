@@ -3,16 +3,16 @@ import model.attribute as attrs
 
 class AttrUtil:
     @classmethod
-    def create_birthday(cls, val):
-        return attrs.Birthday(val)
-
-    @classmethod
     def create_breeding_center(cls, val):
         return attrs.BreedingCenter(val)
 
     @classmethod
     def create_course_suitability(cls, val):
         return attrs.CourseSuitability(val)
+
+    @classmethod
+    def create_date(cls, val):
+        return attrs.Date(val)
 
     @classmethod
     def create_distance(cls, val):
@@ -23,8 +23,8 @@ class AttrUtil:
         return attrs.DistanceSuitability(val)
 
     @classmethod
-    def create_ground(cls, val):
-        return attrs.Ground(val)
+    def create_field(cls, val):
+        return attrs.Field(val)
 
     @classmethod
     def create_growth(cls, val):

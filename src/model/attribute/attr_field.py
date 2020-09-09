@@ -1,7 +1,7 @@
 from . import attribute
 
 
-class Ground(attribute.Attribute):
+class Field(attribute.Attribute):
     def _validation_exception(self):
         raise Exception('馬場状態は芝/ダートのいずれかを指定してください')
 

@@ -7,7 +7,7 @@ class ModelUtil:
         return model.Horse(
             id_=attrs.create_id(0),
             name=attrs.create_name('競走馬名'),
-            birthday=attrs.create_birthday('2000年1月1日'),
+            date=attrs.create_date('2000年1月1日'),
             sex=attrs.create_sex('牡'),
             ped_id=attrs.create_ped_id(0),
             trainer_id=attrs.create_trainer_id(0),
