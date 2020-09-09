@@ -3,6 +3,40 @@ import model.attribute as attrs
 
 class AttrUtil:
     @classmethod
+    def sample(self):
+        return {
+            'horse_id': '2018103973',
+            'horse_name': 'アデウス',
+            'jockey_id': '00666',
+            'jockey_name': '武豊',
+            'ped_id': '000a0124c7',
+            'ped_name': 'シャンパンドーロ',
+            'trainer_id': '01071',
+            'trainer_name': '池江泰寿',
+            'race_id': '202006040201',
+            'race_name': '2歳未勝利',
+            'date': '2018年4月2日',
+            'sex': '牝',
+            'wins': 10,
+            'win_rate': 0.33,
+            'rank_average': 3.5,
+            'money': 200000,
+            'limb': 0.8,
+            'growth': 0.8,
+            'speed': 20.7,
+            'breeding_center': '新ひだか町',
+            'course_suitability': 0.8,
+            'distance_suitability': 0.8,
+            'muddy_track_suitability': 0.8,
+            'summer_suitability': 0.8,
+            'winter_suitability': 0.8,
+            'weather': '晴',
+            'field': '芝',
+            'turn': '右',
+            'distance': 1200,
+        }
+
+    @classmethod
     def create_breeding_center(cls, val):
         return attrs.BreedingCenter(val)
 
@@ -35,6 +69,10 @@ class AttrUtil:
         return attrs.HorseID(val)
 
     @classmethod
+    def create_horses(cls, val):
+        return attrs.Horses(val)
+
+    @classmethod
     def create_id(cls, val):
         return attrs.ID(val)
 
@@ -65,6 +103,10 @@ class AttrUtil:
     @classmethod
     def create_race_id(cls, val):
         return attrs.RaceID(val)
+
+    @classmethod
+    def create_race_prize(cls, val):
+        return attrs.RacePrize(val)
 
     @classmethod
     def create_rank_average(cls, val):

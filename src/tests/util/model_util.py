@@ -5,64 +5,71 @@ class ModelUtil:
     @classmethod
     def create_horse(cls, attrs):
         return model.Horse(
-            id_=attrs.create_horse_id(2018103973),
-            name=attrs.create_name('アデウス'),
-            date=attrs.create_date('2018年4月2日'),
-            sex=attrs.create_sex('牝'),
-            ped_id=attrs.create_ped_id(2009100921),
-            trainer_id=attrs.create_trainer_id(1035),
-            wins=attrs.create_wins(10),
-            win_rate=attrs.create_win_rate(0.33),
-            rank_average=attrs.create_rank_average(3.5),
-            money=attrs.create_money(200000),
-            limb=attrs.create_limb(0.8),
-            growth=attrs.create_growth(0.8),
-            speed=attrs.create_speed(20.7),
-            breeding_center=attrs.create_breeding_center('産地名'),
-            course_suitability=attrs.create_course_suitability(0.8),
-            distance_suitability=attrs.create_distance_suitability(0.8),
-            muddy_track_suitability=attrs.create_muddy_track_suitability(0.8),
-            summer_suitability=attrs.create_summer_suitability(0.8),
-            winter_suitability=attrs.create_winter_suitability(0.8),
+            id_=attrs.create_horse_id(attrs.sample()['horse_id']),
+            name=attrs.create_name(attrs.sample()['horse_name']),
+            birthday=attrs.create_date(attrs.sample()['date']),
+            sex=attrs.create_sex(attrs.sample()['sex']),
+            ped_id=attrs.create_ped_id(attrs.sample()['ped_id']),
+            trainer_id=attrs.create_trainer_id(attrs.sample()['trainer_id']),
+            wins=attrs.create_wins(attrs.sample()['wins']),
+            win_rate=attrs.create_win_rate(attrs.sample()['win_rate']),
+            rank_average=attrs.create_rank_average(attrs.sample()['rank_average']),
+            money=attrs.create_money(attrs.sample()['money']),
+            limb=attrs.create_limb(attrs.sample()['limb']),
+            growth=attrs.create_growth(attrs.sample()['growth']),
+            speed=attrs.create_speed(attrs.sample()['speed']),
+            breeding_center=attrs.create_breeding_center(attrs.sample()['breeding_center']),
+            course_suitability=attrs.create_course_suitability(
+                attrs.sample()['course_suitability']),
+            distance_suitability=attrs.create_distance_suitability(
+                attrs.sample()['distance_suitability']),
+            muddy_track_suitability=attrs.create_muddy_track_suitability(
+                attrs.sample()['muddy_track_suitability']),
+            summer_suitability=attrs.create_summer_suitability(
+                attrs.sample()['summer_suitability']),
+            winter_suitability=attrs.create_winter_suitability(
+                attrs.sample()['winter_suitability']),
         )
 
     @classmethod
     def create_jockey(cls, attrs):
         return model.Jockey(
-            id_=attrs.create_jockey_id(1181),
-            name=attrs.create_name('騎手名'),
-            win_rate=attrs.create_win_rate(0.33),
-            rank_average=attrs.create_rank_average(3.5),
+            id_=attrs.create_jockey_id(attrs.sample()['jockey_id']),
+            name=attrs.create_name(attrs.sample()['jockey_name']),
+            win_rate=attrs.create_win_rate(attrs.sample()['win_rate']),
+            rank_average=attrs.create_rank_average(attrs.sample()['rank_average']),
         )
 
     @classmethod
     def create_ped(cls, attrs):
         return model.Ped(
-            id_=attrs.create_ped_id(2009100921),
-            name=attrs.create_name('血統名'),
-            win_rate=attrs.create_win_rate(0.33),
-            rank_average=attrs.create_rank_average(3.5),
+            id_=attrs.create_ped_id(attrs.sample()['ped_id']),
+            name=attrs.create_name(attrs.sample()['ped_name']),
+            win_rate=attrs.create_win_rate(attrs.sample()['win_rate']),
+            rank_average=attrs.create_rank_average(attrs.sample()['rank_average']),
         )
 
     @classmethod
     def create_trainer(cls, attrs):
         return model.Trainer(
-            id_=attrs.create_trainer_id(1035),
-            name=attrs.create_name('調教師名'),
-            win_rate=attrs.create_win_rate(0.33),
-            rank_average=attrs.create_rank_average(3.5),
+            id_=attrs.create_trainer_id(attrs.sample()['trainer_id']),
+            name=attrs.create_name(attrs.sample()['trainer_name']),
+            win_rate=attrs.create_win_rate(attrs.sample()['win_rate']),
+            rank_average=attrs.create_rank_average(attrs.sample()['rank_average']),
         )
 
     @classmethod
     def create_race(cls, attrs):
         return model.Race(
-            id_=attrs.create_race_id(202006040201),
-            name=attrs.create_name('レース名'),
-            date=attrs.create_date('2000年1月1日'),
-            weather=attrs.create_weather('晴'),
-            field=attrs.create_field('芝'),
-            turn=attrs.create_turn('右'),
-            distance=attrs.create_distance(1200),
-            prize_money=[attrs.create_money(100000) for i in range(5)],
-            horses=[cls.create_horse(attrs) for i in range(18)],
+            id_=attrs.create_race_id(attrs.sample()['race_id']),
+            name=attrs.create_name(attrs.sample()['race_name']),
+            date=attrs.create_date(attrs.sample()['date']),
+            weather=attrs.create_weather(attrs.sample()['weather']),
+            field=attrs.create_field(attrs.sample()['field']),
+            turn=attrs.create_turn(attrs.sample()['turn']),
+            distance=attrs.create_distance(attrs.sample()['distance']),
+            prize=attrs.create_race_prize(
+                [attrs.create_money(400000) for i in range(5)]),
+            horses=attrs.create_horses(
+                [cls.create_horse(attrs) for i in range(18)]),
         )
