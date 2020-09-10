@@ -9,8 +9,9 @@ from selenium.webdriver.chrome.options import Options
 
 
 class RaceExtractor:
-    def __init__(self, race_type):
-        self.race_type = race_type
+    def __init__(self, attrs):
+        self.__attrs = attrs
+        self.__driver = self.__build_driver()
 
     def fetch_race_id_list(self, date=datetime.date.today(), delay=3):
         if not isinstance(date, datetime.date):
@@ -21,25 +22,83 @@ class RaceExtractor:
         timestamp = date.strftime('%Y%m%d')
         url = 'https://race.netkeiba.com/top/race_list.html?kaisai_date=%s' % timestamp
 
-        # access!
-        driver = self.__driver()
-        driver.get(url)
-        time.sleep(delay)
-
-        agent = pycrawl.pycrawl(html=driver.page_source, encoding='EUC-JP')
+        agent = self.__get(url, use_selenium=True)
 
         # extract race's id
         for race in agent.css('.RaceList_DataItem'):
             race_url = race.css('a').attr('href')
             query = self.__parse_query(race_url)
-            result.append(self.race_type(query['race_id'][0]))
+            result.append(self.__attrs.RaceID(query['race_id'][0]))
 
         return result
+
+    def fetch_race_data(self, race_id):
+        result = {}
+
+        url = 'https://race.netkeiba.com/race/result.html?race_id=%s' % race_id
+        agent = self.__get(url)
+
+        # レース情報 ===============
+        race_detail_text = agent.css('.RaceData01').inner_text()
+        result['馬場状態'] = self.__extract_field(race_detail_text)
+        result['走距離'] = self.__extract_distance(race_detail_text)
+        result['天気'] = self.__extract_weather(race_detail_text)
+
+        # 出場馬情報
+        result['競走馬'] = []
+        for horse in agent.css('.HorseList'):
+            result['競走馬'].append({})
+            result['競走馬'][-1]['着順'] = int(horse.css('div')[0].inner_text())
+            result['競走馬'][-1]['枠'] = int(horse.css('div')[1].inner_text())
+            sex_age = horse.css('div')[3].inner_text()
+            result['競走馬'][-1]['性別'] = sex_age[0]
+            result['競走馬'][-1]['年齢'] = int(sex_age[1])
+            result['競走馬'][-1]['斤量'] = float(horse.css('div')[4].inner_text())
+            result['競走馬'][-1]['オッズ'] = float(horse.css('.Txt_R').inner_text())
+            weight = horse.css('.Weight').inner_text()
+            result['競走馬'][-1]['体重'] = int(weight.split('(')[0])
+            if '(0)' in weight:
+                result['競走馬'][-1]['体重増減'] = 0
+            else:
+                result['競走馬'][-1]['体重増減'] = int(re.search(r'[^\d]\d+', weight).group())
+
+        return result
+
+    def __extract_field(self, text):
+        if '芝' in text:
+            return self.__attrs.Field('芝')
+        else:
+            return self.__attrs.Field('ダート')
+
+    def __extract_distance(self, text):
+        distance = re.search(r'\d+m', text)
+        if distance is None:
+            return self.__attrs.Distance(0)
+        else:
+            return self.__attrs.Distance(
+                int(distance.group().replace('m', ''))
+            )
+
+    def __extract_weather(self, text):
+        weather = re.search(r'天候:.', text)
+        if weather is None:
+            return self.__attrs.Weather('晴')
+        else:
+            return self.__attrs.Weather(
+                weather.group().replace('天候:', '')
+            )
 
     def __parse_query(self, url):
         return urllib.parse.parse_qs(url.split('?')[-1])
 
-    def __driver(self, headless=True):
+    def __get(self, url, use_selenium=False):
+        if use_selenium:
+            self.__driver.get(url)
+            return pycrawl.pycrawl(html=self.__driver.page_source, encoding='EUC-JP')
+        else:
+            return pycrawl.pycrawl(url, encoding='EUC-JP')
+
+    def __build_driver(self, headless=True):
         options = Options()
 
         # headless
