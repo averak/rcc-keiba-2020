@@ -3,6 +3,8 @@ import datetime
 import numpy as np
 import model
 import model.attribute as attrs
+from util.attr_util import AttrUtil
+from util.model_util import ModelUtil
 from predict.feature import preprocessing
 from predict.nnet import build_nnet
 
@@ -11,11 +13,7 @@ class TestPredict(unittest.TestCase):
     def setUp(self):
         self.nnet = self.build_nnet()
 
-        from extractor import RaceExtractor
-        race_extractor = RaceExtractor(attrs, model)
-        race_id = '202004020501'
-        self.sample_data = race_extractor.fetch_race_data(
-            attrs.RaceID(race_id))
+        self.sample_data = ModelUtil.create_race(AttrUtil)
 
     def build_nnet(self):
         nnet = build_nnet(150)
@@ -31,14 +29,12 @@ class TestPredict(unittest.TestCase):
     def feature(self, data):
         return preprocessing(data)
 
-    @unittest.skip('Seleniumを利用した重いテストのため')
     def test_preprocessing(self):
         feature = self.feature(self.sample_data)
         self.assertEqual(150, len(feature))
         for x in feature:
             self.assertIsInstance(x, np.float64)
 
-    @unittest.skip('Seleniumを利用した重いテストのため')
     def test_predict(self):
         feature = self.feature(self.sample_data)
         pred = self.nnet.predict(np.array([feature]))
