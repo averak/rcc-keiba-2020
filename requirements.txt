@@ -1,1 +1,7 @@
 twitter
+selenium
+chromedriver_binary
+pycrawl
+tensorflow==2.2.0
+sklearn
+tqdm
