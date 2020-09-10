@@ -9,8 +9,7 @@ from model import Race
 from extractor import RaceExtractor
 from predict.nnet import build_nnet
 from predict.feature import preprocessing
-from post.guide import Guide
-from post.poster import Poster
+from post import Guide, Poster
 
 # build nnet
 nnet = build_nnet(150)
