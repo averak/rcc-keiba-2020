@@ -11,9 +11,9 @@ class TextBuilder:
         self.new_line()
 
     def make_forecast(self, horse, score):
-        self.__buffer += ' 👑 %s' % horse
+        self.__buffer += ' 🔮 一位予想馬'
         self.new_line()
-        self.__buffer += ' 🔮 %s' % self.__make_star(score)
+        self.__buffer += ' 👑 %s' % horse
         self.new_line()
 
     def make_horses(self, horses):
