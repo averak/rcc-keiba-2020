@@ -28,7 +28,6 @@ class TestExtractor(unittest.TestCase):
         self.assertEqual('2018104971', race_data.horses[0].id.attr)
         self.assertEqual('コウソクカレン', race_data.horses[0].name.attr)
         self.assertEqual(1, race_data.horses[0].number.attr)
-        self.assertEqual(11, race_data.horses[0].rank.attr)
         self.assertEqual(2, race_data.horses[0].age.attr)
         self.assertEqual(54.0, race_data.horses[0].load.attr)
         self.assertEqual(9.0, race_data.horses[0].odds.attr)
