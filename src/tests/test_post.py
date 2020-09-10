@@ -41,7 +41,7 @@ class TestPostTextBuilder(unittest.TestCase):
         builder.make_forecast(horse, score)
 
         self.assertEqual(
-            ' 👑 %s\n 🔮 %s\n' % (horse, '★★★★☆'),
+            ' 🔮 一位予想馬\n 👑 %s\n' % horse,
             builder.get_result()
         )
 
