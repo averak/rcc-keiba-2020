@@ -17,7 +17,21 @@ RCC 2020 年度プロジェクト活動
 $ git clone <this repo>
 $ cd <this repo>
 
-$ pip install -r requirements.txt
+$ docker-compose build
+```
+
+### 使用方法
+
+#### テストを実行
+
+```sh
+$ cd src/
+$ python -m unittest discover tests
+```
+
+#### 競馬予想結果をツイート
+```sh
+$ docker-compose up
 ```
 
 ## 開発者

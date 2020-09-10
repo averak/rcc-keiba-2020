@@ -61,7 +61,7 @@ for race_id in tqdm.tqdm(race_id_list):
     race = Race(
         id_=race_id,
         name=race_data['レース名'],
-        date=attrs.Date(date.strftime('%Y年%m月%d日')),
+        date=None,
         weather=race_data['天気'],
         field=race_data['馬場状態'],
         turn=race_data['周回方向'],
