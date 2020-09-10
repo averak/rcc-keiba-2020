@@ -10,6 +10,9 @@ from selenium.webdriver.chrome.options import Options
 
 class RaceExtractor:
     def __init__(self, attrs):
+        import warnings
+        warnings.simplefilter('ignore', DeprecationWarning)
+
         self.__attrs = attrs
         self.__driver = self.__build_driver()
 
@@ -39,17 +42,27 @@ class RaceExtractor:
         agent = self.__get(url)
 
         # レース情報 ===============
-        race_detail_text = agent.css('.RaceData01').inner_text()
+        race_detail_text = \
+            agent.css('.RaceData01').inner_text() + \
+            agent.css('.RaceData02').inner_text()
+        result['レースID'] = race_id
+        result['レース名'] = self.__attrs.Name(agent.css('.RaceName').inner_text())
         result['馬場状態'] = self.__extract_field(race_detail_text)
         result['走距離'] = self.__extract_distance(race_detail_text)
         result['天気'] = self.__extract_weather(race_detail_text)
+        result['周回方向'] = self.__extract_turn(race_detail_text)
+        result['賞金'] = self.__extract_prize(race_detail_text)
 
-        # 出場馬情報
+        # 出場馬情報 ===============
         result['競走馬'] = []
         for horse in agent.css('.HorseList'):
+            if not re.fullmatch(r'\d+', horse.css('div')[0].inner_text()):
+                continue
+
             result['競走馬'].append({})
+            result['競走馬'][-1]['馬名'] = horse.css('a').inner_text()
             result['競走馬'][-1]['着順'] = int(horse.css('div')[0].inner_text())
-            result['競走馬'][-1]['枠'] = int(horse.css('div')[1].inner_text())
+            result['競走馬'][-1]['馬番'] = int(horse.css('div')[2].inner_text())
             sex_age = horse.css('div')[3].inner_text()
             result['競走馬'][-1]['性別'] = sex_age[0]
             result['競走馬'][-1]['年齢'] = int(sex_age[1])
@@ -63,8 +76,8 @@ class RaceExtractor:
                 result['競走馬'][-1]['体重増減'] = int(
                     re.search(r'[^\d]\d+', weight).group())
 
-        # '枠'でソート
-        result['競走馬'] = sorted(result['競走馬'], key=self.__sort_horses)
+        # '馬番'でソート
+        result['競走馬'] = sorted(result['競走馬'], key=lambda x: x['馬番'])
 
         return result
 
@@ -92,6 +105,20 @@ class RaceExtractor:
                 weather.group().replace('天候:', '')
             )
 
+    def __extract_turn(self, text):
+        if '右' in text:
+            return self.__attrs.Turn('右')
+        else:
+            return self.__attrs.Turn('左')
+
+    def __extract_prize(self, text):
+        prizes_text = re.search(r'[\d,]+万円', text)
+        prizes = re.findall(r'\d+', prizes_text.group())
+
+        return self.__attrs.RacePrize(
+            [self.__attrs.Money(int(prize) * 10000) for prize in prizes]
+        )
+
     def __parse_query(self, url):
         return urllib.parse.parse_qs(url.split('?')[-1])
 
@@ -111,6 +138,3 @@ class RaceExtractor:
         options.add_argument('--no-sandbox')
 
         return webdriver.Chrome(chrome_options=options)
-
-    def __sort_horses(self, val):
-        return val['枠']

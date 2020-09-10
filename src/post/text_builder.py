@@ -29,7 +29,10 @@ class TextBuilder:
     def get_result(self):
         return self.__buffer
 
+    def clear(self):
+        self.__buffer = ''
+
     def __make_star(self, score):
-        result = '★' * round(score)
+        result = '★' * round(float(score))
         result = result.ljust(5, '☆')
         return result

@@ -11,7 +11,7 @@ class Guide:
         self.__builder.new_line()
 
         # レース情報
-        self.__builder.make_string(race.name)
+        #self.__builder.make_string(race.name)
         self.__builder.make_string(
             '%sm（%s|%s周り）' % (race.distance, race.field, race.turn))
         self.__builder.make_string('賞金：%s' % race.prize)
@@ -32,4 +32,7 @@ class Guide:
         # 詳細URL
         self.__builder.make_string(race.url)
 
-        return self.__builder.get_result()
+        result = self.__builder.get_result()
+        self.__builder.clear()
+
+        return result

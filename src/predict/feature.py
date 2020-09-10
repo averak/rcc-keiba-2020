@@ -14,7 +14,7 @@ def preprocessing(race, n_race_features=3, n_horse_features=7, n_horses=21):
 
     # 競走馬情報
     for horse in race['競走馬']:
-        result.append(horse['枠'])
+        result.append(horse['馬番'])
         result.append(['牡', '牝', 'セ'].index(horse['性別']))
         result.append(horse['年齢'])
         result.append(horse['斤量'])
