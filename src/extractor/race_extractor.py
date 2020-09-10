@@ -35,53 +35,55 @@ class RaceExtractor:
         return result
 
     def fetch_race_data(self, race_id):
-        result = {}
-
         url = 'https://race.netkeiba.com/race/result.html?race_id=%s' % race_id
         doc = self.__get(url)
 
-        # レース情報 ===============
-        result['レースID'] = race_id
-        result['レース名'] = self.__attrs.Name(doc.css('.RaceName').inner_text())
-        result['馬場状態'] = self.__extract_field(doc)
-        result['走距離'] = self.__extract_distance(doc)
-        result['天気'] = self.__extract_weather(doc)
-        result['周回方向'] = self.__extract_turn(doc)
-        result['賞金'] = self.__extract_prize(doc)
+        return self.__models.Race(
+            id_=race_id,
+            name=self.__extract_name(doc),
+            date=None,
+            weather=self.__extract_weather(doc),
+            field=self.__extract_field(doc),
+            turn=self.__extract_turn(doc),
+            distance=self.__extract_distance(doc),
+            prize=self.__extract_prize(doc),
+            horses=self.__extract_race_horses(doc)
+        )
 
-        # 出場馬情報 ===============
-        result['競走馬'] = []
+    def __extract_race_horses(self, doc):
+        result = []
+
         for horse in doc.css('.HorseList'):
             if not re.fullmatch(r'\d+', horse.css('div')[0].inner_text()):
                 continue
 
-            result['競走馬'].append(self.__extract_race_horse(horse))
+            weights = re.findall(
+                r'[-\+]{0,1}\d+', horse.css('.Weight').inner_text())
+
+            result.append(self.__models.RaceHorse(
+                id_=self.__attrs.HorseID(
+                    horse.css('a').attr('href').split('/')[-1]),
+                number=self.__attrs.Number(
+                    int(horse.css('div')[2].inner_text())),
+                rank=self.__attrs.Rank(
+                    int(horse.css('div')[0].inner_text())),
+                age=self.__attrs.Age(
+                    int(horse.css('div')[3].inner_text()[1])),
+                load=self.__attrs.Load(
+                    float(horse.css('div')[4].inner_text())),
+                odds=self.__attrs.Odds(
+                    float(horse.css('.Txt_R').inner_text())),
+                weight=self.__attrs.Weight(int(weights[0])),
+                weight_change=self.__attrs.WeightChange(int(weights[1])),
+            ))
 
         # 馬番でソート
-        result['競走馬'] = sorted(result['競走馬'], key=lambda x: x.number.attr)
+        result = sorted(result, key=lambda x: x.number.attr)
 
         return result
 
-    def __extract_race_horse(self, doc):
-        weights = re.findall(
-            r'[-\+]{0,1}\d+', doc.css('.Weight').inner_text())
-
-        return self.__models.RaceHorse(
-            id_=self.__attrs.HorseID(
-                doc.css('a').attr('href').split('/')[-1]),
-            number=self.__attrs.Number(
-                int(doc.css('div')[2].inner_text())),
-            rank=self.__attrs.Rank(
-                int(doc.css('div')[0].inner_text())),
-            age=self.__attrs.Age(
-                int(doc.css('div')[3].inner_text()[1])),
-            load=self.__attrs.Load(
-                float(doc.css('div')[4].inner_text())),
-            odds=self.__attrs.Odds(
-                float(doc.css('.Txt_R').inner_text())),
-            weight=self.__attrs.Weight(int(weights[0])),
-            weight_change=self.__attrs.WeightChange(int(weights[1])),
-        )
+    def __extract_name(self, doc):
+        return self.__attrs.Name(doc.css('.RaceName').inner_text())
 
     def __extract_field(self, doc):
         text = doc.css('.RaceData01').inner_text()

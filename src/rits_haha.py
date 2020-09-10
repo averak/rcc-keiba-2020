@@ -28,9 +28,6 @@ race_id_list = race_extractor.fetch_race_id_list()
 for race_id in tqdm.tqdm(race_id_list):
     race_data = race_extractor.fetch_race_data(race_id)
 
-    if race_data['競走馬'] == []:
-        continue
-
     horses = []
     for horse in race_data['競走馬']:
         horses.append(

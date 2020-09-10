@@ -1,6 +1,7 @@
 import unittest
 import datetime
 import numpy as np
+import model
 import model.attribute as attrs
 from predict.feature import preprocessing
 from predict.nnet import build_nnet
@@ -9,10 +10,9 @@ from predict.nnet import build_nnet
 class TestPredict(unittest.TestCase):
     def setUp(self):
         self.nnet = self.build_nnet()
-        print(100)
 
         from extractor import RaceExtractor
-        race_extractor = RaceExtractor(attrs)
+        race_extractor = RaceExtractor(attrs, model)
         race_id = '202004020501'
         self.sample_data = race_extractor.fetch_race_data(
             attrs.RaceID(race_id))

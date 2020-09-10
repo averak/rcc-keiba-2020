@@ -14,13 +14,14 @@ def preprocessing(race, n_race_features=3, n_horse_features=7, n_horses=21):
 
     # 競走馬情報
     for horse in race['競走馬']:
-        result.append(horse['馬番'])
-        result.append(['牡', '牝', 'セ'].index(horse['性別']))
-        result.append(horse['年齢'])
-        result.append(horse['斤量'])
-        result.append(horse['オッズ'])
-        result.append(horse['体重'])
-        result.append(horse['体重増減'])
+        result.append(horse.number.attr)
+        #result.append(['牡', '牝', 'セ'].index(horse['性別']))
+        result.append(0) # fixme : sex
+        result.append(horse.age.attr)
+        result.append(horse.load.attr)
+        result.append(horse.odds.attr)
+        result.append(horse.weight.attr)
+        result.append(horse.weight_change.attr)
 
     fill = np.zeros(n_horses*n_horse_features + n_race_features - len(result))
     result.extend(fill)
