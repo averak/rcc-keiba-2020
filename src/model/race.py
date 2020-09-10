@@ -48,7 +48,7 @@ class Race(model.Model):
 
     @property
     def n_horses(self):
-        return self.__horses.n_horses
+        return len(self.__horses)
 
     @property
     def url(self):

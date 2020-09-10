@@ -1,12 +1,13 @@
 import unittest
 import datetime
 import model.attribute as attrs
+import model
 
 
 class TestExtractor(unittest.TestCase):
     def setUp(self):
         from extractor import RaceExtractor
-        self.race_extractor = RaceExtractor(attrs)
+        self.race_extractor = RaceExtractor(attrs, model)
 
     @unittest.skip('Seleniumを利用した重いテストのため')
     def test_fetch_race_id(self):
@@ -24,12 +25,11 @@ class TestExtractor(unittest.TestCase):
         self.assertEqual(1600, race_data['走距離'].attr)
         self.assertEqual('雨', race_data['天気'].attr)
         self.assertEqual('左', race_data['周回方向'].attr)
-        self.assertEqual('コウソクカレン', race_data['競走馬'][0]['馬名'])
-        self.assertEqual(11, race_data['競走馬'][0]['着順'])
-        self.assertEqual(1, race_data['競走馬'][0]['馬番'])
-        self.assertEqual('牝', race_data['競走馬'][0]['性別'])
-        self.assertEqual(2, race_data['競走馬'][0]['年齢'])
-        self.assertEqual(54.0, race_data['競走馬'][0]['斤量'])
-        self.assertEqual(9.0, race_data['競走馬'][0]['オッズ'])
-        self.assertEqual(496, race_data['競走馬'][0]['体重'])
-        self.assertEqual(-2, race_data['競走馬'][0]['体重増減'])
+        self.assertEqual('2018104971', race_data['競走馬'][0].id.attr)
+        self.assertEqual(1, race_data['競走馬'][0].number.attr)
+        self.assertEqual(11, race_data['競走馬'][0].rank.attr)
+        self.assertEqual(2, race_data['競走馬'][0].age.attr)
+        self.assertEqual(54.0, race_data['競走馬'][0].load.attr)
+        self.assertEqual(9.0, race_data['競走馬'][0].odds.attr)
+        self.assertEqual(496, race_data['競走馬'][0].weight.attr)
+        self.assertEqual(-2, race_data['競走馬'][0].weight_change.attr)

@@ -80,10 +80,6 @@ class AttrUtil:
         return attrs.HorseID(val)
 
     @classmethod
-    def create_horses(cls, val):
-        return attrs.Horses(val)
-
-    @classmethod
     def create_id(cls, val):
         return attrs.ID(val)
 

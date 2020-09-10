@@ -75,8 +75,7 @@ class ModelUtil:
             distance=attrs.create_distance(attrs.sample()['distance']),
             prize=attrs.create_race_prize(
                 [attrs.create_money(400000) for i in range(5)]),
-            horses=attrs.create_horses(
-                [cls.create_horse(attrs) for i in range(18)]),
+            horses=[cls.create_race_horse(attrs) for i in range(18)],
         )
 
     @classmethod
