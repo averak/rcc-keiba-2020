@@ -29,6 +29,9 @@ race_id_list = race_extractor.fetch_race_id_list()
 for race_id in tqdm.tqdm(race_id_list):
     race_data = race_extractor.fetch_race_data(race_id)
 
+    if race_data is None:
+        continue
+
     # predict
     feature = preprocessing(race_data)
     pred = nnet.predict(np.array([feature]))

@@ -16,7 +16,7 @@ class RaceExtractor:
         self.__models = models
         self.__driver = self.__build_driver()
 
-    def fetch_race_id_list(self, date=datetime.date.today(), delay=3):
+    def fetch_race_id_list(self, date=datetime.date.today()):
         if not isinstance(date, datetime.date):
             raise Exception('dateはdatetime.dateオブジェクトを指定してください')
 
@@ -35,30 +35,30 @@ class RaceExtractor:
         return result
 
     def fetch_race_data(self, race_id):
-        url = 'https://race.netkeiba.com/race/result.html?race_id=%s' % race_id
-        doc = self.__get(url)
+        url = 'https://race.netkeiba.com/race/shutuba.html?race_id=%s' % race_id
+        doc = self.__get(url, use_selenium=True)
 
-        return self.__models.Race(
-            id_=race_id,
-            name=self.__extract_name(doc),
-            date=None,
-            weather=self.__extract_weather(doc),
-            field=self.__extract_field(doc),
-            turn=self.__extract_turn(doc),
-            distance=self.__extract_distance(doc),
-            prize=self.__extract_prize(doc),
-            horses=self.__extract_race_horses(doc)
-        )
+        try:
+            return self.__models.Race(
+                id_=race_id,
+                name=self.__extract_name(doc),
+                date=None,
+                weather=self.__extract_weather(doc),
+                field=self.__extract_field(doc),
+                turn=self.__extract_turn(doc),
+                distance=self.__extract_distance(doc),
+                prize=self.__extract_prize(doc),
+                horses=self.__extract_race_horses(doc)
+            )
+        except:
+            return None
 
     def __extract_race_horses(self, doc):
         result = []
 
         for horse in doc.css('.HorseList'):
-            if not re.fullmatch(r'\d+', horse.css('div')[0].inner_text()):
-                continue
-
             weights = re.findall(
-                r'[-\+]{0,1}\d+', horse.css('.Weight').inner_text())
+                r'[-\+]{0,1}\d+', horse.css('td')[8].inner_text())
 
             result.append(self.__models.RaceHorse(
                 id_=self.__attrs.HorseID(
@@ -66,15 +66,14 @@ class RaceExtractor:
                 name=self.__attrs.Name(
                     horse.css('a').attr('title')),
                 number=self.__attrs.Number(
-                    int(horse.css('div')[2].inner_text())),
-                rank=self.__attrs.Rank(
-                    int(horse.css('div')[0].inner_text())),
+                    int(re.fullmatch(r'\d+', horse.css('td')[1].inner_text()).group())),
+                rank=None,
                 age=self.__attrs.Age(
-                    int(horse.css('div')[3].inner_text()[1])),
+                    int(horse.css('td')[4].inner_text()[1])),
                 load=self.__attrs.Load(
-                    float(horse.css('div')[4].inner_text())),
+                    float(horse.css('td')[5].inner_text())),
                 odds=self.__attrs.Odds(
-                    float(horse.css('.Txt_R').inner_text())),
+                    float(horse.css('td')[9].inner_text())),
                 weight=self.__attrs.Weight(int(weights[0])),
                 weight_change=self.__attrs.WeightChange(int(weights[1])),
             ))
