@@ -1,7 +1,5 @@
 import unittest
-from post.poster import Poster
-from post.text_builder import TextBuilder
-from post.guide import Guide
+from post import Guide, Poster, TextBuilder
 from util.attr_util import AttrUtil
 from util.model_util import ModelUtil
 
