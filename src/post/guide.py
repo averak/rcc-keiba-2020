@@ -29,6 +29,11 @@ class Guide:
         self.__builder.make_horses(horses)
         self.__builder.new_line()
 
+        # ハッシュタグ
+        self.__builder.make_hashtag('競馬予想', '立命の母')
+        self.__builder.new_line()
+        self.__builder.new_line()
+
         # 詳細URL
         self.__builder.make_string(race.url)
 

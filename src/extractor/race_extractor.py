@@ -85,7 +85,9 @@ class RaceExtractor:
         return result
 
     def __extract_name(self, doc):
-        return self.__attrs.Name(doc.css('.RaceName').inner_text())
+        name = doc.css('.RaceKaisaiWrap').css('.Active').inner_text()
+        name += doc.css('.RaceNumWrap').css('.Active').inner_text()
+        return self.__attrs.Name(name)
 
     def __extract_field(self, doc):
         text = doc.css('.RaceData01').inner_text()

@@ -14,7 +14,7 @@ class AttrUtil:
             'trainer_id': '01071',
             'trainer_name': '池江泰寿',
             'race_id': '202006040201',
-            'race_name': '2歳未勝利',
+            'race_name': '中山1R',
             'date': '2018年4月2日',
             'sex': '牝',
             'wins': 10,

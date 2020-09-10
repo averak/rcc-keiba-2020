@@ -23,6 +23,9 @@ class TextBuilder:
             self.__buffer += '🐎 %s' % horse
             self.new_line()
 
+    def make_hashtag(self, *tag):
+        self.__buffer += '#%s' % ' #'.join(tag)
+
     def new_line(self):
         self.__buffer += '\n'
 

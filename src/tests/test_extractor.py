@@ -20,7 +20,7 @@ class TestExtractor(unittest.TestCase):
         race_id = '202004020501'
         race_data = self.race_extractor.fetch_race_data(attrs.RaceID(race_id))
         self.assertEqual(race_id, race_data.id.attr)
-        self.assertEqual('2歳未勝利', race_data.name.attr)
+        self.assertEqual('新潟1R', race_data.name.attr)
         self.assertEqual('芝', race_data.field.attr)
         self.assertEqual(1600, race_data.distance.attr)
         self.assertEqual('雨', race_data.weather.attr)

@@ -56,6 +56,13 @@ class TestPostTextBuilder(unittest.TestCase):
             builder.get_result()
         )
 
+    def test_make_hashtag(self):
+        builder = self.builder()
+        builder.make_hashtag('タグA', 'タグB')
+
+        self.assertEqual('#タグA #タグB', builder.get_result())
+
+
     def test_make_text(self):
         text = self.make_text()
         #print()
