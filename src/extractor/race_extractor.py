@@ -3,7 +3,6 @@ import time
 import datetime
 import urllib.parse
 import pycrawl
-import chromedriver_binary
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 

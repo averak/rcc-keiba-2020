@@ -1,11 +1,11 @@
 import unittest
 import datetime
 import model.attribute as attrs
-from extractor import RaceExtractor
 
 
 class TestExtractor(unittest.TestCase):
     def setUp(self):
+        from extractor import RaceExtractor
         self.race_extractor = RaceExtractor(attrs)
 
     @unittest.skip('Seleniumを利用した重いテストのため')
@@ -14,6 +14,7 @@ class TestExtractor(unittest.TestCase):
             datetime.date(2020, 8, 8))
         self.assertEqual('202004020501', race_id[0].attr)
 
+    @unittest.skip('Seleniumを利用した重いテストのため')
     def test_fetch_race_data(self):
         race_id = '202004020501'
         race_data = self.race_extractor.fetch_race_data(attrs.RaceID(race_id))
