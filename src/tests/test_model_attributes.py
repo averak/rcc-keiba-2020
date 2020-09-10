@@ -12,6 +12,10 @@ class TestModelAttribute(unittest.TestCase):
     def attrs(self):
         return AttrUtil
 
+    def test_age(self):
+        attr = self.attrs.create_age(self.sample['age'])
+        self.assertEqual(self.sample['age'], attr.attr)
+
     def test_breeding_center(self):
         attr = self.attrs.create_breeding_center(
             self.sample['breeding_center'])
@@ -55,6 +59,10 @@ class TestModelAttribute(unittest.TestCase):
         attr = self.attrs.create_limb(self.sample['limb'])
         self.assertEqual(self.sample['limb'], attr.attr)
 
+    def test_load(self):
+        attr = self.attrs.create_load(self.sample['load'])
+        self.assertEqual(self.sample['load'], attr.attr)
+
     def test_money(self):
         attr = self.attrs.create_money(self.sample['money'])
         self.assertEqual(self.sample['money'], attr.attr)
@@ -67,6 +75,14 @@ class TestModelAttribute(unittest.TestCase):
     def test_name(self):
         attr = self.attrs.create_name(self.sample['horse_name'])
         self.assertEqual(self.sample['horse_name'], attr.attr)
+
+    def test_number(self):
+        attr = self.attrs.create_number(self.sample['number'])
+        self.assertEqual(self.sample['number'], attr.attr)
+
+    def test_odds(self):
+        attr = self.attrs.create_odds(self.sample['odds'])
+        self.assertEqual(self.sample['odds'], attr.attr)
 
     def test_ped_id(self):
         attr = self.attrs.create_ped_id(self.sample['ped_id'])
@@ -84,6 +100,10 @@ class TestModelAttribute(unittest.TestCase):
         attr = self.attrs.create_race_prize(race_prize)
         self.assertEqual('40,40,40,40,40万円', str(attr))
 
+    def test_rank(self):
+        attr = self.attrs.create_rank(self.sample['rank'])
+        self.assertEqual(self.sample['rank'], attr.attr)
+
     def test_rank_average(self):
         attr = self.attrs.create_rank_average(self.sample['rank_average'])
         self.assertEqual(self.sample['rank_average'], attr.attr)
@@ -97,7 +117,8 @@ class TestModelAttribute(unittest.TestCase):
         self.assertEqual(self.sample['speed'], attr.attr)
 
     def test_summer_suitability(self):
-        attr = self.attrs.create_summer_suitability(self.sample['summer_suitability'])
+        attr = self.attrs.create_summer_suitability(
+            self.sample['summer_suitability'])
         self.assertEqual(self.sample['summer_suitability'], attr.attr)
 
     def test_trainer_id(self):
@@ -112,6 +133,14 @@ class TestModelAttribute(unittest.TestCase):
         attr = self.attrs.create_weather(self.sample['weather'])
         self.assertEqual(self.sample['weather'], attr.attr)
 
+    def test_weight(self):
+        attr = self.attrs.create_weight(self.sample['weight'])
+        self.assertEqual(self.sample['weight'], attr.attr)
+
+    def test_weight_change(self):
+        attr = self.attrs.create_weight_change(self.sample['weight_change'])
+        self.assertEqual(self.sample['weight_change'], attr.attr)
+
     def test_win_rate(self):
         attr = self.attrs.create_win_rate(self.sample['win_rate'])
         self.assertEqual(self.sample['win_rate'], attr.attr)
@@ -121,5 +150,6 @@ class TestModelAttribute(unittest.TestCase):
         self.assertEqual(self.sample['wins'], attr.attr)
 
     def test_winter_suitability(self):
-        attr = self.attrs.create_winter_suitability(self.sample['winter_suitability'])
+        attr = self.attrs.create_winter_suitability(
+            self.sample['winter_suitability'])
         self.assertEqual(self.sample['winter_suitability'], attr.attr)

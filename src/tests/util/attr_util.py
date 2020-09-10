@@ -34,7 +34,18 @@ class AttrUtil:
             'field': '芝',
             'turn': '右',
             'distance': 1200,
+            'number': 1,
+            'rank': 1,
+            'age': 2,
+            'load': 60.0,
+            'odds': 22.6,
+            'weight': 486,
+            'weight_change': 8,
         }
+
+    @classmethod
+    def create_age(cls, val):
+        return attrs.Age(val)
 
     @classmethod
     def create_breeding_center(cls, val):
@@ -85,6 +96,10 @@ class AttrUtil:
         return attrs.Limb(val)
 
     @classmethod
+    def create_load(cls, val):
+        return attrs.Load(val)
+
+    @classmethod
     def create_money(cls, val):
         return attrs.Money(val)
 
@@ -97,6 +112,14 @@ class AttrUtil:
         return attrs.Name(val)
 
     @classmethod
+    def create_number(cls, val):
+        return attrs.Number(val)
+
+    @classmethod
+    def create_odds(cls, val):
+        return attrs.Odds(val)
+
+    @classmethod
     def create_ped_id(cls, val):
         return attrs.PedID(val)
 
@@ -107,6 +130,10 @@ class AttrUtil:
     @classmethod
     def create_race_prize(cls, val):
         return attrs.RacePrize(val)
+
+    @classmethod
+    def create_rank(cls, val):
+        return attrs.Rank(val)
 
     @classmethod
     def create_rank_average(cls, val):
@@ -139,6 +166,14 @@ class AttrUtil:
     @classmethod
     def create_weather(cls, val):
         return attrs.Weather(val)
+
+    @classmethod
+    def create_weight(cls, val):
+        return attrs.Weight(val)
+
+    @classmethod
+    def create_weight_change(cls, val):
+        return attrs.WeightChange(val)
 
     @classmethod
     def create_win_rate(cls, val):

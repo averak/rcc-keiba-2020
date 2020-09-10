@@ -30,6 +30,9 @@ class TestModel(unittest.TestCase):
     def create_race(self):
         return ModelUtil.create_race(self.attrs)
 
+    def create_race_horse(self):
+        return ModelUtil.create_race_horse(self.attrs)
+
     def test_create_horse(self):
         horse = self.create_horse()
         self.assertEqual(
@@ -63,6 +66,13 @@ class TestModel(unittest.TestCase):
         self.assertEqual(
             'https://race.netkeiba.com/race/shutuba.html?race_id=%s' % race.id,
             race.url
+        )
+
+    def test_create_race_horse(self):
+        race_horse = self.create_race_horse()
+        self.assertEqual(
+            'https://db.netkeiba.com/horse/%s' % race_horse.id,
+            race_horse.url
         )
 
     def test_equals(self):
