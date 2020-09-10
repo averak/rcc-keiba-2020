@@ -11,7 +11,7 @@ class Guide:
         self.__builder.new_line()
 
         # レース情報
-        #self.__builder.make_string(race.name)
+        self.__builder.make_string(race.name)
         self.__builder.make_string(
             '%sm（%s|%s周り）' % (race.distance, race.field, race.turn))
         self.__builder.make_string('賞金：%s' % race.prize)
@@ -24,7 +24,7 @@ class Guide:
         self.__builder.new_line()
 
         # 出場馬一覧
-        horses = [horse.name for horse in race.horses.attr][:3]
+        horses = [race_horse.name for race_horse in race.horses][:2]
         horses.append('...')
         self.__builder.make_horses(horses)
         self.__builder.new_line()

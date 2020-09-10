@@ -56,10 +56,10 @@ class TestPostTextBuilder(unittest.TestCase):
             builder.get_result()
         )
 
-    @unittest.skip('投稿テキストのプレビュー')
     def test_make_text(self):
-        print()
-        print(self.make_text())
+        text = self.make_text()
+        #print()
+        #print(text)
 
     @unittest.skip('投稿されるため')
     def test_post(self):

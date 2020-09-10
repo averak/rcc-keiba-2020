@@ -13,12 +13,14 @@ class ModelUtil:
             trainer_id=attrs.create_trainer_id(attrs.sample()['trainer_id']),
             wins=attrs.create_wins(attrs.sample()['wins']),
             win_rate=attrs.create_win_rate(attrs.sample()['win_rate']),
-            rank_average=attrs.create_rank_average(attrs.sample()['rank_average']),
+            rank_average=attrs.create_rank_average(
+                attrs.sample()['rank_average']),
             money=attrs.create_money(attrs.sample()['money']),
             limb=attrs.create_limb(attrs.sample()['limb']),
             growth=attrs.create_growth(attrs.sample()['growth']),
             speed=attrs.create_speed(attrs.sample()['speed']),
-            breeding_center=attrs.create_breeding_center(attrs.sample()['breeding_center']),
+            breeding_center=attrs.create_breeding_center(
+                attrs.sample()['breeding_center']),
             course_suitability=attrs.create_course_suitability(
                 attrs.sample()['course_suitability']),
             distance_suitability=attrs.create_distance_suitability(
@@ -37,7 +39,8 @@ class ModelUtil:
             id_=attrs.create_jockey_id(attrs.sample()['jockey_id']),
             name=attrs.create_name(attrs.sample()['jockey_name']),
             win_rate=attrs.create_win_rate(attrs.sample()['win_rate']),
-            rank_average=attrs.create_rank_average(attrs.sample()['rank_average']),
+            rank_average=attrs.create_rank_average(
+                attrs.sample()['rank_average']),
         )
 
     @classmethod
@@ -46,7 +49,8 @@ class ModelUtil:
             id_=attrs.create_ped_id(attrs.sample()['ped_id']),
             name=attrs.create_name(attrs.sample()['ped_name']),
             win_rate=attrs.create_win_rate(attrs.sample()['win_rate']),
-            rank_average=attrs.create_rank_average(attrs.sample()['rank_average']),
+            rank_average=attrs.create_rank_average(
+                attrs.sample()['rank_average']),
         )
 
     @classmethod
@@ -55,7 +59,8 @@ class ModelUtil:
             id_=attrs.create_trainer_id(attrs.sample()['trainer_id']),
             name=attrs.create_name(attrs.sample()['trainer_name']),
             win_rate=attrs.create_win_rate(attrs.sample()['win_rate']),
-            rank_average=attrs.create_rank_average(attrs.sample()['rank_average']),
+            rank_average=attrs.create_rank_average(
+                attrs.sample()['rank_average']),
         )
 
     @classmethod
@@ -70,6 +75,20 @@ class ModelUtil:
             distance=attrs.create_distance(attrs.sample()['distance']),
             prize=attrs.create_race_prize(
                 [attrs.create_money(400000) for i in range(5)]),
-            horses=attrs.create_horses(
-                [cls.create_horse(attrs) for i in range(18)]),
+            horses=[cls.create_race_horse(attrs) for i in range(18)],
+        )
+
+    @classmethod
+    def create_race_horse(cls, attrs):
+        return model.RaceHorse(
+            id_=attrs.create_horse_id(attrs.sample()['horse_id']),
+            name=attrs.create_name(attrs.sample()['horse_name']),
+            number=attrs.create_number(attrs.sample()['number']),
+            rank=attrs.create_rank(attrs.sample()['rank']),
+            age=attrs.create_age(attrs.sample()['age']),
+            load=attrs.create_load(attrs.sample()['load']),
+            odds=attrs.create_odds(attrs.sample()['odds']),
+            weight=attrs.create_weight(attrs.sample()['weight']),
+            weight_change=attrs.create_weight_change(
+                attrs.sample()['weight_change']),
         )
