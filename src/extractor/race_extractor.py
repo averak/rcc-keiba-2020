@@ -63,6 +63,8 @@ class RaceExtractor:
             result.append(self.__models.RaceHorse(
                 id_=self.__attrs.HorseID(
                     horse.css('a').attr('href').split('/')[-1]),
+                name=self.__attrs.Name(
+                    horse.css('a').attr('title')),
                 number=self.__attrs.Number(
                     int(horse.css('div')[2].inner_text())),
                 rank=self.__attrs.Rank(

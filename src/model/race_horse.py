@@ -3,6 +3,7 @@ from . import model
 
 class RaceHorse(model.Model):
     def _hook_create(self, config):
+        self.__name = config['name']
         self.__number = config['number']
         self.__rank = config['rank']
         self.__age = config['age']
@@ -10,6 +11,10 @@ class RaceHorse(model.Model):
         self.__odds = config['odds']
         self.__weight = config['weight']
         self.__weight_change = config['weight_change']
+
+    @property
+    def name(self):
+        return self.__name
 
     @property
     def number(self):

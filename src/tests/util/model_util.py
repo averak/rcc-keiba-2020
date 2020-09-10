@@ -82,6 +82,7 @@ class ModelUtil:
     def create_race_horse(cls, attrs):
         return model.RaceHorse(
             id_=attrs.create_horse_id(attrs.sample()['horse_id']),
+            name=attrs.create_name(attrs.sample()['horse_name']),
             number=attrs.create_number(attrs.sample()['number']),
             rank=attrs.create_rank(attrs.sample()['rank']),
             age=attrs.create_age(attrs.sample()['age']),

@@ -13,15 +13,15 @@ def preprocessing(race, n_race_features=3, n_horse_features=7, n_horses=21):
     result.append(['晴', '曇', '雨'].index(race.weather.attr))
 
     # 競走馬情報
-    for horse in race.horses:
-        result.append(horse.number.attr)
-        #result.append(['牡', '牝', 'セ'].index(horse['性別']))
+    for race_horse in race.horses:
+        result.append(race_horse.number.attr)
+        #result.append(['牡', '牝', 'セ'].index(race_horse['性別']))
         result.append(0) # fixme : sex
-        result.append(horse.age.attr)
-        result.append(horse.load.attr)
-        result.append(horse.odds.attr)
-        result.append(horse.weight.attr)
-        result.append(horse.weight_change.attr)
+        result.append(race_horse.age.attr)
+        result.append(race_horse.load.attr)
+        result.append(race_horse.odds.attr)
+        result.append(race_horse.weight.attr)
+        result.append(race_horse.weight_change.attr)
 
     fill = np.zeros(n_horses*n_horse_features + n_race_features - len(result))
     result.extend(fill)
