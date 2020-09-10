@@ -60,7 +60,11 @@ class RaceExtractor:
             if '(0)' in weight:
                 result['競走馬'][-1]['体重増減'] = 0
             else:
-                result['競走馬'][-1]['体重増減'] = int(re.search(r'[^\d]\d+', weight).group())
+                result['競走馬'][-1]['体重増減'] = int(
+                    re.search(r'[^\d]\d+', weight).group())
+
+        # '枠'でソート
+        result['競走馬'] = sorted(result['競走馬'], key=self.__sort_horses)
 
         return result
 
@@ -107,3 +111,6 @@ class RaceExtractor:
         options.add_argument('--no-sandbox')
 
         return webdriver.Chrome(chrome_options=options)
+
+    def __sort_horses(self, val):
+        return val['枠']
