@@ -1,16 +1,11 @@
 import unittest
 import model
 import model.attribute as attrs
-import repository as repo
 from util.attr_util import AttrUtil
 from util.model_util import ModelUtil
 
 
 class TestModel(unittest.TestCase):
-    def setUp(self):
-        self.horse_repo = repo.Repository(model.Horse)
-        self.jockey_repo = repo.Repository(model.Jockey)
-
     @property
     def attrs(self):
         return AttrUtil
@@ -79,15 +74,3 @@ class TestModel(unittest.TestCase):
         horse1 = self.create_horse()
         horse2 = self.create_horse()
         self.assertTrue(horse1.__eq__(horse2))
-
-    def test_horse_repo(self):
-        horse = self.create_horse()
-        self.horse_repo.store(horse)
-        self.assertEqual([horse], self.horse_repo.find(horse.id, 'id'))
-        self.assertEqual([horse], self.horse_repo.find(horse.name, 'name'))
-
-    def test_jockey_repo(self):
-        jockey = self.create_jockey()
-        self.jockey_repo.store(jockey)
-        self.assertEqual([jockey], self.jockey_repo.find(jockey.id, 'id'))
-        self.assertEqual([jockey], self.jockey_repo.find(jockey.name, 'name'))
