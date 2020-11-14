@@ -1,6 +1,7 @@
 # 競馬 AI 班
 
-[![build](https://github.com/ritscc/rcc-keiba-2020/workflows/build/badge.svg)](https://github.com/ritscc/rcc-keiba-2020/actions)
+![test](https://github.com/ritscc/rcc-keiba-2020/workflows/test/badge.svg)
+![code check](https://github.com/ritscc/rcc-keiba-2020/workflows/code%20check/badge.svg)
 [![Twitter](https://img.shields.io/badge/Twitter-競馬AI班-blue?style=flat-square&logo=twitter)](https://twitter.com/search?q=%23rcc_keiba)
 
 RCC 2020 年度プロジェクト活動
@@ -9,7 +10,7 @@ RCC 2020 年度プロジェクト活動
 
 - Ubuntu 20.04
 - Python ~> 3.8.0
-- TensorFlow 2.2
+- pipenv
 
 ## インストール
 
@@ -17,7 +18,8 @@ RCC 2020 年度プロジェクト活動
 $ git clone <this repo>
 $ cd <this repo>
 
-$ docker-compose build
+$ cd src
+$ pipenv install
 ```
 
 ### 使用方法
@@ -25,13 +27,14 @@ $ docker-compose build
 #### テストを実行
 
 ```sh
-$ cd src/
-$ python -m unittest discover tests
+$ cd src
+$ pipenv run test
 ```
 
 #### 競馬予想結果をツイート
+
 ```sh
-$ docker-compose up
+$ pipenv run start
 ```
 
 ## 開発者

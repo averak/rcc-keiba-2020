@@ -1,4 +1,4 @@
-name: build
+name: code check
 
 on:
   push:
@@ -25,9 +25,13 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
+        cd app
         pip install -U pip
-        pip install -r requirements.txt
-    - name: Run Test
+        pip install pipenv
+        pipenv install
+        pipenv install --dev
+    - name: Run code check
       run: |
-        cd src/
-        python -m unittest discover tests
+        cd src
+        pipenv run lint
+

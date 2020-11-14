@@ -1,5 +1,5 @@
+import os
 from twitter import Twitter, OAuth
-import json
 
 
 class Poster:
@@ -12,7 +12,10 @@ class Poster:
 
     @classmethod
     def token(cls):
-        with open('config/twitter_token.json', 'r') as f:
-            token = json.load(f)
+        result = []
+        result.append(os.environ['TWITTER_ACCESS_TOKEN'])
+        result.append(os.environ['TWITTER_ACCESS_TOKEN_SECRET'])
+        result.append(os.environ['TWITTER_API_KEY'])
+        result.append(os.environ['TWITTER_API_KEY_SECRET'])
 
-        return token.values()
+        return result

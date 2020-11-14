@@ -1,6 +1,0 @@
-twitter
-selenium
-pycrawl
-tensorflow==2.2.0
-sklearn
-tqdm
