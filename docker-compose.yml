@@ -1,8 +1,6 @@
 version: '3'
 services:
   rits_haha:
-    build: .
+    build: ./src
     volumes:
       - .:/app
-    working_dir: /app/src
-    command: ./rits_haha.py
