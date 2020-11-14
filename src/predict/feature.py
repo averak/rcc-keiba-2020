@@ -16,7 +16,7 @@ def preprocessing(race, n_race_features=3, n_horse_features=7, n_horses=21):
     for race_horse in race.horses:
         result.append(race_horse.number.attr)
         #result.append(['牡', '牝', 'セ'].index(race_horse['性別']))
-        result.append(0) # fixme : sex
+        result.append(0)  # fixme : sex
         result.append(race_horse.age.attr)
         result.append(race_horse.load.attr)
         result.append(race_horse.odds.attr)
