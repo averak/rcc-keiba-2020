@@ -21,16 +21,27 @@ $ cd src
 $ pipenv install
 ```
 
-### 使用方法
+## 使用方法
 
-#### テストを実行
+### Twitter トークンをセット
+
+`src/.env`を作成
+
+```sh
+TWITTER_ACCESS_TOKEN=...
+TWITTER_ACCESS_TOKEN_SECRET=...
+TWITTER_API_KEY=...
+TWITTER_API_KEY_SECRET=...
+```
+
+### テストを実行
 
 ```sh
 $ cd src
 $ pipenv run test
 ```
 
-#### 競馬予想結果をツイート
+### 競馬予想結果をツイート
 
 ```sh
 $ pipenv run start
