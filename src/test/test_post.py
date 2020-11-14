@@ -63,9 +63,7 @@ class TestPostTextBuilder(unittest.TestCase):
         self.assertEqual('#タグA #タグB', builder.get_result())
 
     def test_make_text(self):
-        text = self.make_text()
-        # print()
-        # print(text)
+        self.make_text()
 
     @unittest.skip('トークン非公開のため')
     def test_twitter_token(self):

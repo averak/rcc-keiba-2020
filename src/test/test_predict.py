@@ -1,8 +1,5 @@
 import unittest
-import datetime
 import numpy as np
-import model
-import model.attribute as attrs
 from util.attr_util import AttrUtil
 from util.model_util import ModelUtil
 from predict.feature import preprocessing

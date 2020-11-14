@@ -18,4 +18,4 @@ class RacePrize(attribute.Attribute):
         return True
 
     def __str__(self):
-        return ','.join([str(money.attr//10000) for money in self.attr]) + '万円'
+        return ','.join([str(money.attr // 10000) for money in self.attr]) + '万円'

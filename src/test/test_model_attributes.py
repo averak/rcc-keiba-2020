@@ -1,7 +1,5 @@
 import unittest
-import model.attribute as attrs
 from util.attr_util import AttrUtil
-from util.model_util import ModelUtil
 
 
 class TestModelAttribute(unittest.TestCase):

@@ -1,6 +1,4 @@
 import unittest
-import model
-import model.attribute as attrs
 from util.attr_util import AttrUtil
 from util.model_util import ModelUtil
 

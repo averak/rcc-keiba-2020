@@ -1,4 +1,3 @@
-from . import attribute
 from . import attr_id
 
 

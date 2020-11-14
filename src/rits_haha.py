@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 import time
 import tqdm
-import datetime
 import numpy as np
 import model.attribute as attrs
 import model
-from model import Horse
-from model import Race
 from extractor import RaceExtractor
 from predict.nnet import build_nnet
 from predict.feature import preprocessing

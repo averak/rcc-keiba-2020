@@ -1,5 +1,4 @@
 import re
-import time
 import datetime
 import urllib.parse
 import pycrawl
@@ -50,7 +49,7 @@ class RaceExtractor:
                 prize=self.__extract_prize(doc),
                 horses=self.__extract_race_horses(doc)
             )
-        except:
+        except Exception:
             return None
 
     def __extract_race_horses(self, doc):
