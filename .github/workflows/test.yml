@@ -32,6 +32,5 @@ jobs:
         pipenv install --dev
     - name: Run Test
       run: |
-        cd app
+        cd src
         pipenv run test
-
