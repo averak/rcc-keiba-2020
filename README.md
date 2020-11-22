@@ -2,6 +2,7 @@
 
 ![test](https://github.com/ritscc/rcc-keiba-2020/workflows/test/badge.svg)
 ![code check](https://github.com/ritscc/rcc-keiba-2020/workflows/code%20check/badge.svg)
+![deploy](https://github.com/ritscc/rcc-keiba-2020/workflows/deploy/badge.svg)
 [![Twitter](https://img.shields.io/badge/Twitter-競馬AI班-blue?style=flat-square&logo=twitter)](https://twitter.com/search?q=%23rcc_keiba)
 
 RCC 2020 年度プロジェクト活動
