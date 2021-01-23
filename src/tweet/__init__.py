@@ -1,9 +1,9 @@
 from .guide import Guide
-from .poster import Poster
+from .tweet import Tweet
 from .text_builder import TextBuilder
 
 __all__ = [
+    'Tweet',
     'Guide',
-    'Poster',
     'TextBuilder',
 ]

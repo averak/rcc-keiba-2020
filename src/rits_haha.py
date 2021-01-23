@@ -7,7 +7,7 @@ import model
 from extractor import RaceExtractor
 from nnet.dnn import DNN
 from nnet.feature import preprocessing
-from post import Guide, Poster
+from tweet import Tweet, Guide
 
 # build nnet
 nnet = DNN(150, 21)
@@ -27,16 +27,16 @@ for race_id in tqdm.tqdm(race_id_list):
     feature = preprocessing(race_data)
     pred = nnet.predict(np.array([feature]))
 
-    winner_index = np.argmax(pred[0])
+    winner_index = np.argmax(pred)
     if winner_index >= len(race_data.horses):
         winner_index = len(race_data.horses) - 1
 
     # post to twitter
     guide = Guide()
     text = guide.construct(
-        race_data, race_data.horses[winner_index], pred[0][winner_index] * 5.0)
+        race_data, race_data.horses[winner_index], pred[winner_index] * 5.0)
     try:
-        Poster.publish(text)
+        Tweet.publish(text)
     except Exception as e:
         print(e)
 
