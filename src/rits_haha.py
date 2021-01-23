@@ -5,18 +5,12 @@ import numpy as np
 import model.attribute as attrs
 import model
 from extractor import RaceExtractor
-from predict.nnet import build_nnet
-from predict.feature import preprocessing
+from nnet.dnn import DNN
+from nnet.feature import preprocessing
 from post import Guide, Poster
 
 # build nnet
-nnet = build_nnet(150)
-nnet.compile(
-    optimizer='adam',
-    loss='sparse_categorical_crossentropy',
-    metrics=['accuracy'],
-)
-nnet.load_weights('predict/model.h5')
+nnet = DNN(150, 21)
 
 # fetch today's race id list
 race_extractor = RaceExtractor(attrs, model)
